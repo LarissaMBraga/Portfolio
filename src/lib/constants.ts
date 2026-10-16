@@ -5,7 +5,7 @@ export const PERSONAL_INFO = {
   headline: "Building thoughtful digital experiences.",
   email: "larissambraga2005@gmail.com",
   linkedin: "https://www.linkedin.com/in/larissa-braga128",
-  github: "https://github.com/YOUR-GITHUB-USERNAME",
+  github: "https://github.com/LarissMBraga",
 };
 
 export const ABOUT_TEXT =
