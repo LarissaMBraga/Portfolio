@@ -46,7 +46,7 @@ Bachelor's degree in Computer Science — In progress
 
 - **Email:** [larissambraga2005@gmail.com](mailto:larissambraga2005@gmail.com)
 - **LinkedIn:** [linkedin.com/in/larissa-braga128](https://www.linkedin.com/in/larissa-braga128)
-- **Github:** [linkedin.com/in/larissa-braga128](https://github.com/LarissaMBraga)
+- **Github:** [github.com/LarissMBraga](https://github.com/LarissaMBraga)
 
 ---
 
