@@ -95,9 +95,9 @@ export default function Hero() {
                 </div>
 
                 <div className="border-t border-white/10 pt-4 text-xs leading-6 text-white/30">
-                  // Turning ideas into interfaces.
+                  {"// Turning ideas into interfaces."}
                   <br />
-                  // Building for the web.
+                  {"// Building for the web."}
                 </div>
               </div>
             </div>
