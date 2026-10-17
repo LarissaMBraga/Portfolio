@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import Container from "./Container";
 import ScrollReveal from "./ScrollRevel";
 import {
@@ -7,8 +8,102 @@ import {
 } from "../lib/constants";
 
 export default function Education() {
+  const timelineRef = useRef<HTMLDivElement>(null);
+  const [progress, setProgress] = useState(0);
+  const [activeItems, setActiveItems] = useState<boolean[]>([]);
+  const [honorsCount, setHonorsCount] = useState(0);
+  const honorsRef = useRef<HTMLDivElement>(null);
+
+  const timelineItems = [
+    ...EDUCATION.map((item) => ({
+      period: item.period,
+      course: item.course,
+      institution: item.institution,
+      description: item.description,
+      type: "education",
+    })),
+    {
+      period: INTERNATIONAL_EXPERIENCE.period,
+      course: "International Experience",
+      institution: INTERNATIONAL_EXPERIENCE.institution,
+      description: INTERNATIONAL_EXPERIENCE.description,
+      type: "international",
+    },
+  ];
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!timelineRef.current) return;
+
+      const rect = timelineRef.current.getBoundingClientRect();
+      const viewportPoint = window.innerHeight * 0.55;
+
+      const totalHeight = rect.height;
+      const currentPosition = viewportPoint - rect.top;
+
+      const percentage = Math.max(
+        0,
+        Math.min(100, (currentPosition / totalHeight) * 100)
+      );
+
+      setProgress(percentage);
+
+      const points = Array.from(
+        timelineRef.current.querySelectorAll(".timeline-point")
+      );
+
+      setActiveItems(
+        points.map((point) => {
+          const pointRect = point.getBoundingClientRect();
+          return pointRect.top <= viewportPoint;
+        })
+      );
+    };
+
+    handleScroll();
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!honorsRef.current) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+
+        let current = 0;
+
+        const interval = window.setInterval(() => {
+          current += 1;
+          setHonorsCount(current);
+
+          if (current >= 7) {
+            window.clearInterval(interval);
+          }
+        }, 200);
+
+        observer.disconnect();
+      },
+      { threshold: 0.5 }
+    );
+
+    observer.observe(honorsRef.current);
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section id="education" className="bg-[#F5F1EC] py-20 sm:py-28">
+    <section
+      id="education"
+      className="bg-[#F5F1EC] py-20 sm:py-28"
+    >
       <Container>
         <ScrollReveal direction="left">
           <div className="mb-12">
@@ -23,55 +118,95 @@ export default function Education() {
         </ScrollReveal>
 
         <div className="grid gap-10 lg:grid-cols-[1.3fr_0.7fr]">
-          {/* Education */}
-          <div className="space-y-4">
-            {EDUCATION.map((item, index) => (
-              <ScrollReveal
-                key={`${item.institution}-${item.course}`}
-                direction="left"
-                delay={index * 100}
-              >
-                <article className="rounded-2xl border border-black/5 bg-[#FFFCF9] p-6 transition-transform duration-300 hover:-translate-y-1 hover:shadow-md">
-                  <p className="text-sm text-[#FF4D00]">
-                    {item.period}
-                  </p>
+          {/* Timeline */}
+          <div
+            ref={timelineRef}
+            className="relative pl-10"
+          >
+            {/* Background line */}
+            <div className="absolute left-[7px] top-3 bottom-3 w-[2px] bg-black/10">
+              {/* Animated orange line */}
+              <div
+                className="absolute left-0 top-0 w-full bg-[#FF4D00] transition-[height] duration-150"
+                style={{
+                  height: `${progress}%`,
+                }}
+              />
+            </div>
 
-                  <h3 className="mt-2 text-lg font-semibold">
-                    {item.course}
-                  </h3>
+            <div className="space-y-6">
+              {timelineItems.map((item, index) => (
+                <div
+                  key={`${item.institution}-${item.course}-${index}`}
+                  className="relative"
+                >
+                  {/* Timeline point */}
+                  <div
+                    className={`timeline-point absolute -left-[40px] top-7 z-10 h-4 w-4 rounded-full border-4 border-[#F5F1EC] transition-all duration-500 ${
+                      activeItems[index]
+                        ? "scale-125 bg-[#FF4D00] shadow-[0_0_15px_rgba(255,77,0,0.45)]"
+                        : "bg-black/20"
+                    }`}
+                  />
 
-                  <p className="mt-1 text-sm text-black/60">
-                    {item.institution}
-                  </p>
+                  <ScrollReveal
+                    direction="left"
+                    delay={index * 100}
+                  >
+                    <article className="rounded-2xl border border-black/5 bg-[#FFFCF9] p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+                      <p className="text-sm text-[#FF4D00]">
+                        {item.period}
+                      </p>
 
-                  <p className="mt-4 text-sm leading-6 text-black/65">
-                    {item.description}
-                  </p>
-                </article>
-              </ScrollReveal>
-            ))}
+                      <h3 className="mt-2 text-lg font-semibold">
+                        {item.course}
+                      </h3>
+
+                      <p className="mt-1 text-sm text-black/60">
+                        {item.institution}
+                      </p>
+
+                      <p className="mt-4 text-sm leading-6 text-black/65">
+                        {item.description}
+                      </p>
+                    </article>
+                  </ScrollReveal>
+                </div>
+              ))}
+            </div>
           </div>
 
-          {/* International experience + languages */}
+          {/* Honors + Languages */}
           <div className="space-y-4">
             <ScrollReveal direction="right" delay={100}>
-              <article className="rounded-2xl bg-black p-6 text-white transition-transform duration-300 hover:-translate-y-1 sm:p-8">
+              <article
+                ref={honorsRef}
+                className="rounded-2xl bg-black p-6 text-white transition-transform duration-300 hover:-translate-y-1 sm:p-8"
+              >
                 <p className="text-sm text-[#FF7A45]">
-                  International experience
+                  Academic Honors
                 </p>
 
-                <h3 className="mt-3 text-xl font-semibold">
-                  {INTERNATIONAL_EXPERIENCE.institution}
-                </h3>
+                <div className="mt-6">
+                  <div className="flex items-end gap-3">
+                    <span className="text-7xl font-bold tracking-[-0.06em] text-white">
+                      {honorsCount}
+                    </span>
 
-                <p className="mt-1 text-sm text-white/60">
-                  {INTERNATIONAL_EXPERIENCE.location} ·{" "}
-                  {INTERNATIONAL_EXPERIENCE.period}
-                </p>
+                    <span className="pb-2 text-lg text-white/50">
+                      times
+                    </span>
+                  </div>
 
-                <p className="mt-5 text-sm leading-6 text-white/75">
-                  {INTERNATIONAL_EXPERIENCE.description}
-                </p>
+                  <h3 className="mt-4 text-xl font-semibold">
+                    Academic Honors List
+                  </h3>
+
+                  <p className="mt-3 text-sm leading-6 text-white/60">
+                    Recognized 7 times on the Academic Honors List during
+                    the 2024–2025 and 2025–2026 academic years.
+                  </p>
+                </div>
               </article>
             </ScrollReveal>
 

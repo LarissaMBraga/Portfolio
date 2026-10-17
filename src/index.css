@@ -87,3 +87,118 @@ a {
 .animate-lmb-pulse {
   animation: lmbPulse 1.2s ease-in-out infinite;
 }
+.tech-marquee-track {
+  animation: tech-marquee-scroll 35s linear infinite;
+  width: max-content;
+  transition: none;
+}
+
+@keyframes tech-marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.responsive-device {
+  animation: responsiveDevice 9s linear infinite;
+}
+
+.responsive-device:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.responsive-device:nth-child(2) {
+  animation-delay: 3s;
+}
+
+.responsive-device:nth-child(3) {
+  animation-delay: 6s;
+}
+
+@keyframes responsiveDevice {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  27% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  33% {
+    opacity: 1;
+    transform: translateX(-220px);
+  }
+
+  33.01%,
+  100% {
+    opacity: 0;
+    transform: translateX(220px);
+  }
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+html.dark body {
+  background: #0A0A0A;
+  color: #F5F5F5;
+}
+
+html.dark section.bg-\[\#F5F1EC\],
+html.dark section.bg-\[\#FFFCF9\] {
+  background-color: #0A0A0A !important;
+}
+
+html.dark article.bg-\[\#FFFCF9\],
+html.dark article.bg-white {
+  background-color: #171717 !important;
+  border-color: rgb(255 255 255 / 10%);
+  color: #F5F5F5;
+}
+
+
+html.dark div.bg-white {
+  background-color: #171717;
+  border-color: rgb(255 255 255 / 10%);
+}
+
+html.dark .text-black,
+html.dark .text-black\/40,
+html.dark .text-black\/50,
+html.dark .text-black\/55,
+html.dark .text-black\/60,
+html.dark .text-black\/65,
+html.dark .text-black\/70,
+html.dark .text-black\/80 {
+  color: #F5F5F5;
+}
+
+html.dark .border-black\/5,
+html.dark .border-black\/10,
+html.dark .border-black\/15 {
+  border-color: rgb(255 255 255 / 12%);
+}
+
+html.dark .text-\[\#D17BFC\] {
+  color: #cf8943;
+}
+
+html.dark body {
+  background-color: #0A0A0A !important;
+  color: #FFFFFF;
+}
+
+html.dark #home,
+html.dark #about,
+html.dark #experience,
+html.dark #skills,
+html.dark #education,
+html.dark #contact {
+  background-color: #0A0A0A !important;
+}

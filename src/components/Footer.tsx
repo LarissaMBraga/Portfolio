@@ -8,9 +8,11 @@ export default function Footer() {
     !PERSONAL_INFO.github.includes("YOUR-GITHUB-USERNAME");
 
   return (
-    <footer className="border-t border-black/10 py-8">
+    
+<footer className="border-t border-black/10 bg-[#FFFCF9] py-8 dark:!border-white/10 dark:!bg-[#0A0A0A]">
+
       <Container>
-        <div className="flex flex-col justify-between gap-4 text-sm text-black/55 sm:flex-row sm:items-center">
+        <div className="flex flex-col justify-between gap-4 text-sm text-black/55 dark:text-white/65 sm:flex-row sm:items-center">
           <p>
             © {new Date().getFullYear()} {PERSONAL_INFO.name}
           </p>
