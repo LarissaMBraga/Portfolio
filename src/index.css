@@ -72,3 +72,18 @@ a {
     transition-duration: 0.01ms !important;
   }
 }
+
+@keyframes lmbPulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.2;
+  }
+}
+
+.animate-lmb-pulse {
+  animation: lmbPulse 1.2s ease-in-out infinite;
+}
