@@ -108,7 +108,7 @@ export default function Education() {
         <ScrollReveal direction="left">
           <div className="mb-12">
             <p className="text-sm font-medium uppercase tracking-[0.2em] text-[#FF4D00]">
-              04 / Education
+              Education
             </p>
 
             <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">

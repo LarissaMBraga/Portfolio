@@ -7,6 +7,7 @@ import Education from "./components/Education";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import BentoGrid from "./components/BentoGrid";
+import Projects from "./components/Projects";
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -43,6 +44,7 @@ export default function App() {
         <Header />
         <main>
           <Hero />
+          <Projects />
           <About />
           <Experience />
           <BentoGrid />

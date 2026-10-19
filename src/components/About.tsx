@@ -14,7 +14,7 @@ export default function About() {
           <ScrollReveal direction="left">
             <div>
               <p className="text-sm font-medium uppercase tracking-[0.2em] text-[#FF4D00]">
-                01 / About
+                About
               </p>
 
               <h2 className="mt-4 text-3xl font-semibold tracking-tight dark:text-white sm:text-4xl">

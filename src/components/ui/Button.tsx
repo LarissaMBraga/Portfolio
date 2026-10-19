@@ -1,5 +1,4 @@
-
-import type { ReactNode } from "react";
+import type { ReactNode, MouseEventHandler } from "react";
 
 interface ButtonProps {
   children: ReactNode;
@@ -8,6 +7,7 @@ interface ButtonProps {
   target?: string;
   rel?: string;
   className?: string;
+  onClick?: MouseEventHandler<HTMLAnchorElement | HTMLButtonElement>;
 }
 
 export function Button({
@@ -17,6 +17,7 @@ export function Button({
   target,
   rel,
   className = "",
+  onClick,
 }: ButtonProps) {
   const base =
     "inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-medium transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0";
@@ -32,8 +33,7 @@ export function Button({
       "border border-white/50 bg-transparent text-white hover:border-white hover:bg-white/10",
   };
 
-  const combinedClassName =
-    `${base} ${styles[variant]} ${className}`;
+  const combinedClassName = `${base} ${styles[variant]} ${className}`;
 
   if (href) {
     return (
@@ -42,6 +42,7 @@ export function Button({
         className={combinedClassName}
         target={target}
         rel={rel}
+        onClick={onClick as MouseEventHandler<HTMLAnchorElement>}
       >
         {children}
       </a>
@@ -52,6 +53,7 @@ export function Button({
     <button
       type="button"
       className={combinedClassName}
+      onClick={onClick as MouseEventHandler<HTMLButtonElement>}
     >
       {children}
     </button>

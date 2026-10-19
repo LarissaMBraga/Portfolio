@@ -9,7 +9,7 @@ export default function Experience() {
         <ScrollReveal direction="left">
           <div className="mb-12">
             <p className="text-sm font-medium uppercase tracking-[0.2em] text-[#FF4D00]">
-              02 / Experience
+              Experience
             </p>
 
             <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">

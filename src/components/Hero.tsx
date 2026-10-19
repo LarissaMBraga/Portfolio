@@ -89,7 +89,7 @@ export default function Hero() {
 
               <h1 className="mt-5 min-h-[1.05em] max-w-4xl text-4xl font-bold leading-[1.05] tracking-tight transition-transform duration-500 group-hover:translate-x-1 sm:text-5xl md:text-6xl lg:text-7xl">
                 {name}
-                <span className="text-[#FF4D00]">.</span>
+                <span className="text-[#FF4D00]"></span>
                 {name.length < PERSONAL_INFO.name.length && (
                   <span className="animate-[blink_0.55s_step-end_infinite] text-[#FF4D00]">|</span>
                 )}

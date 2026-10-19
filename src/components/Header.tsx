@@ -4,6 +4,7 @@ import ThemeToggle from "./ThemeToggle";
 
 const navigation = [
   { label: "About", href: "#about" },
+  { label: "Projects", href: "#projects" },
   { label: "Experience", href: "#experience" },
   { label: "Skills", href: "#skills" },
   { label: "Education", href: "#education" },
@@ -20,7 +21,7 @@ export default function Header() {
             className="shrink-0 text-lg font-bold tracking-tight dark:text-white"
             aria-label="Go to homepage"
           >
-            LMB<span className="text-[#D17BFC]">.</span>
+            LMB<span className="text-[#D17BFC]"></span>
           </a>
 
           <div className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-5 lg:flex">

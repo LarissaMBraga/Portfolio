@@ -10,7 +10,7 @@ export default function Contact() {
         <ScrollReveal direction="left">
           <div className="rounded-3xl bg-[#FF4D00] px-6 py-12 text-white transition-transform duration-500 hover:-translate-y-1 sm:px-12 sm:py-16">
             <p className="text-sm font-medium uppercase tracking-[0.2em] text-white/75">
-              05 / Contact
+              Contact
             </p>
 
             <h2 className="mt-5 max-w-3xl text-4xl font-semibold tracking-tight sm:text-6xl">
